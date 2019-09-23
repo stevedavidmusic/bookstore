@@ -1,0 +1,131 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.Home__Master {
+  @include flex(column);
+  background-color: $black;
+  color: $white;
+  font-size: 2.5vh;
+}
+
+.Home__BannerContainer {
+  @include hidden();
+  height: 50vh;
+}
+
+.Home__Banner {
+  width: 100%;
+  height: 100%;
+}
+
+.Home__BiographiesContainer {
+  @include topic_cards($purple, 60vh);
+}
+
+.Home__SportsContainer {
+  @include topic_cards($bright-orange, 60vh);
+}
+
+.Home__BusinessContainer {
+  @include topic_cards($dark-blue, 60vh);
+}
+
+.Home__Books {
+  @include topic_cards($black, 50%);
+  @include flex_center(row);
+  // @include book_row();
+}
+
+.Home__Book {
+  background-color: red;
+  width: 33%;
+}
+
+.Home__Biographies {
+  @include topic_cards($purple, 50%);
+  h1 {
+    color: $white;
+  }
+
+  :hover h1 {
+    color: $sky-blue;
+  }
+}
+
+.Home__Sports {
+  @include topic_cards($bright-orange, 50%);
+  h1 {
+    color: $white;
+  }
+  :hover h1 {
+    color: $sky-blue;
+  }
+}
+
+.Home__Business {
+  @include topic_cards($dark-blue, 50%);
+  h1 {
+    color: $white;
+  }
+  :hover h1 {
+    color: $sky-blue;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .Home__Biographies {
+    height: 50%;
+  }
+
+  .Home__Book {
+    height: 50%;
+  }
+
+  .Home__Books {
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .Home__BannerContainer {
+    @include flex-center(row);
+    height: 45vh;
+    width: 100%;
+    background-image: url("https://www.thebanner.org/s3/files/styles/article-large/s3/article/large/TIN-332%20Books%20from_large.jpg?itok=goIsOQs0");
+    background-repeat: no-repeat;
+    background-position: center;
+    h1 {
+      font-size: 50px;
+    }
+  }
+
+  .Home__BiographiesContainer,
+  .Home__BusinessContainer {
+    height: 42vh;
+    flex-direction: row;
+  }
+
+  .Home__SportsContainer {
+    height: 42vh;
+    flex-direction: row-reverse;
+  }
+
+  .Home__Biographies,
+  .Home__Sports,
+  .Home__Business,
+  .Home__Books {
+    max-width: 50%;
+    height: 100%;
+    h1 {
+      font-size: 50px;
+    }
+  }
+
+  .Home__Books {
+    justify-content: space-between;
+  }
+}

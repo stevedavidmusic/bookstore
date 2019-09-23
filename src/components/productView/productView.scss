@@ -1,0 +1,25 @@
+@import '../../scss/variables';
+@import '../../scss/mixins'; 
+
+.ProductView__Master {
+    height: 100%; 
+    .Shop__BooksContainer {
+        justify-content: center;
+        align-items: center; 
+    }
+}
+.ProductView__Desktop {
+    @include hidden; 
+}
+
+@media only screen and (min-width: 700px) {
+    .ProductView__Mobile {
+        @include hidden
+    }
+
+    .ProductView__Desktop {
+        display: flex; 
+        width: 100%; 
+        height: 100%; 
+    }
+}

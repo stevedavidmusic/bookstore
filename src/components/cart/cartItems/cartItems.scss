@@ -1,0 +1,150 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+
+.CartItems__Master {
+  @include flex_center(row);
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  line-height: 20px;
+}
+
+.CartItems__Image {
+  width: 100%;
+}
+
+.CartItems__Details {
+  @include flex(column);
+  width: 100%;
+  padding-left: 5px;
+}
+
+.CartItems__EditContainer {
+  width: 100%;
+}
+
+.CartItems__Edit {
+  @include flex_center(row);
+  padding-top: 5px;
+  width: 45%;
+}
+
+.CartItems__MinusSign {
+  @include flex_center(column);
+  align-items: flex-start;
+  fill: $mist;
+  width: 11vw;
+  height: 100%;
+  padding-right: 5px;
+}
+
+.CartItems__PlusSign {
+  fill: $mist;
+  height: 100%;
+  width: 12.5vw;
+  padding-left: 5px;
+}
+
+.CartItems__Count {
+  @include flex_center(row);
+  border: 1px solid $pidgeon-grey;
+  width: 25vw;
+  height: 5vh;
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.CartItems__ExitIcon {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  fill: $white;
+  width: 40%;
+  padding-top: 10px;
+  padding-right: 5px;
+}
+
+@media only screen and (min-width: 400px) {
+  .CartItems__Image {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 550px) {
+  .CartItems__MinusSign {
+    width: 45px;
+  }
+
+  .CartItems__PlusSign {
+    width: 51px;
+  }
+
+  .CartItems__Count {
+    width: 20vw;
+    height: 4vh;
+  }
+
+  .CartItems__Name,
+  .CartItems__Price,
+  .CartItems__Quantity,
+  .CartItems__Count,
+  .Cart__CheckoutContainer {
+    font-size: 20px;
+    line-height: 35px;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .CartItems__Image {
+    width: 60%;
+  }
+
+  .CartItems__MinusSign {
+    width: 20px;
+  }
+
+  .CartItems__PlusSign {
+    width: 25px;
+  }
+
+  .CartItems__Count {
+    width: 35px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .CartItems__Image {
+    width: 55%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .CartItems__Image {
+    width: 50%;
+  }
+
+  .CartItems__Count {
+    width: 45px;
+  }
+
+  .CartItems__Name,
+  .CartItems__Price,
+  .CartItems__Quantity,
+  .CartItems__Count,
+  .Cart__CheckoutContainer {
+    font-size: 25px;
+    line-height: 35px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+    .CartItems__Image {
+        width: 60%;
+      }
+    
+    .Cart__CartItems { 
+        @include flex_center(row); 
+        width: 100%; 
+    }
+}

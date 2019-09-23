@@ -1,0 +1,32 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+img, .Book__Link {
+    @include flex_center(row); 
+    height: 100%; 
+    width: 100%;
+}
+
+@media only screen and (min-width: 420px) {
+    img, .Book__Link {
+        width: 80%; 
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    img, .Book__Link {
+        width: 70%; 
+    }
+}
+
+@media only screen and (min-width: 625px) {
+    img, .Book__Link {
+        width: 50%; 
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    img, .Book__Link {
+        width: 100%; 
+    }
+}

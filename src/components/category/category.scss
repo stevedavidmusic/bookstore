@@ -1,0 +1,16 @@
+@import '../../scss/variables';
+@import '../../scss/mixins'; 
+
+.Category__Master {
+    @include master_colors;
+    padding-top: 10px; 
+}
+
+.Category__BooksByCategory {
+    @include flex_center(row); 
+    color: $sky-blue; 
+}
+
+.Shop__BooksContainer {
+    padding-bottom: 25px; 
+}

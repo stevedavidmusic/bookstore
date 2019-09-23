@@ -1,0 +1,57 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.Shop__Master {
+  background-color: $black;
+  color: $bright-orange;
+  
+  h1 {
+    font-size: 32.5px; 
+  }
+}
+
+.Shop__DropdownContainer {
+    @include flex_center(column);
+    flex-wrap: wrap;  
+    padding-top: 15px; 
+}
+
+.Shop__DropdownText {
+  display: flex; 
+  justify-content: center;
+  align-items: center;  
+  padding-bottom: 10px; 
+}
+
+.Shop__SearchText {
+  @include flex_center(row); 
+  width: 100%; 
+}
+
+.Shop__BooksContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 37.5px; 
+  }
+}
+
+.Shop__Book {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 700px) {
+  .Shop__Master {
+    h1 { 
+      font-size: 37.5px; 
+    }
+  }
+  .Shop__BooksContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

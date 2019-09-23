@@ -1,0 +1,102 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+
+.ProductMobile__Master {
+  @include flex(column);
+  @include master_colors;
+  padding-top: 7.5px;
+  align-items: center;
+}
+
+.ProductMobile__Image {
+  @include flex_center(row);
+  width: 60vw;
+  padding-bottom: 5px;
+}
+
+.ProductMobile__Title {
+  padding-bottom: 5px;
+}
+
+.ProductMobile__Author {
+  font-style: italic;
+}
+
+.ProductMobile__EditContainer {
+  @include flex(row);
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.ProductMobile__MinusSign {
+  fill: $mist;
+  width: 12vw;
+  height: 12vh;
+}
+
+.ProductMobile__Count {
+  @include flex_center(row);
+  border: 1px solid $pidgeon-grey;
+  width: 25vw;
+  height: 9vh;
+}
+
+.ProductMobile__PlusSign {
+  fill: $mist;
+  height: 12.5vh;
+  width: 12.5vw;
+}
+
+.ProductMobile__AddToCart {
+  @include flex_center(row);
+  width: 90%;
+  height: 9vh;
+  background-color: $sky-blue;
+  border-radius: 25px;
+}
+
+.ProductMobile__DescriptionTag {
+  color: $mist;
+  width: 100%;
+  display: flex;
+  width: 95%;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.ProductMobile__Description {
+  @include flex_center(row);
+  width: 95%;
+  color: $mist;
+  line-height: 25px;
+}
+
+.ProductMobile__MiscInfo {
+  color: $mist;
+  padding-top: 10px;
+  width: 95%;
+  line-height: 30px;
+  font-style: italic;
+}
+
+.ProductMobile__SubjectsLink {
+  h3 {
+    color: $white;
+  }
+}
+
+.ProductMobile__AuthorLink,
+.ProductMobile__SubjectsLink {
+  :hover {
+    color: $sky-blue;
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .ProductMobile__Image {
+    width: 70vw;
+    padding-bottom: 5px;
+  }
+}

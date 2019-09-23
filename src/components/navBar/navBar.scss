@@ -1,0 +1,147 @@
+@import "../../scss/variables";
+@import '../../scss/mixins'; 
+
+.NavBar__Master {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  background-color: $dark-grey;
+  max-width: 100%;
+  height: 100px; 
+
+  h1 {
+    font-size: 27.5px; 
+  }
+}
+
+a {
+  text-decoration: none;
+  :hover {
+    color: $sky-blue;
+  }
+}
+
+.NavBar__LoginMobile {
+  color: $bright-orange; 
+}
+
+.NavBar__HomeAndShopMobile {
+  color: $bright-orange; 
+}
+
+a,
+.NavBar__Right {
+  color: $bright-orange;
+}  
+
+.NavBar__Menu {
+  width: 60px;
+  padding-left: 2vw;
+  height: 9vh;
+}
+
+.NavBar__Hamburger {
+  stroke: $bright-orange;
+  stroke-width: 45px;
+  width: 5vw;
+}
+
+
+.NavBar__Home {
+  @include hidden();
+}
+
+.NavBar__Right {
+  @include flex_center(row);
+  align-items: center;
+  padding-right: 2vw;
+}
+
+.NavBar__LineDivider {
+  @include hidden(); 
+  padding-left: 5px;
+  padding-right: 5px; 
+}
+
+.NavBar__Shop,
+.NavBar__Login,
+.NavBar__Register,
+.NavBar__Cart {
+  color: $bright-orange;
+  :hover {
+    color: $sky-blue;
+  }
+}
+
+.NavBar__Shop,
+.NavBar__Login,
+.NavBar__Line {
+  @include hidden();
+}
+
+.NavBar__Cart {
+  @include flex_center(row);
+  width: 100%; 
+}
+
+.NavBar__CartCounter {
+  display: flex; 
+  align-items: flex-end; 
+  font-size: 20px;
+  background-color: $dark-blue; 
+  border-radius: 50%; 
+}
+
+.NavBar__CartLength {
+  @include flex_center(row); 
+  color: $bright-orange;   
+  height: 30px; 
+  width: 30px; 
+}
+
+.NavBar__CartLink {
+  display: flex; 
+  align-items: flex-end; 
+}
+
+@media only screen and (min-width: 650px) {
+  .NavBar__Home {
+    display: flex;
+    width: 100px;
+  }
+
+  .NavBar__LoginMobile, .NavBar__HomeAndShopMobile {
+    @include hidden(); 
+  }
+
+  .NavBar__Home {
+    padding-left: 2vw;
+  }
+
+  .NavBar__Shop,
+  .NavBar__Login,
+  .NavBar__Line, .NavBar__LineDivider {
+    @include flex_center(row);
+    width: 100%; 
+  }  
+
+  .NavBar__Master {
+    h1 {
+      font-size: 32.5px; 
+    }
+  }
+} 
+
+@media only screen and (min-width: 1000px) {
+  .NavBar__CartLength {
+    height: 40px; 
+    width: 40px; 
+    font-size: 25px; 
+  }
+
+  .NavBar__Master {
+    h1 {
+      font-size: 40px; 
+    }
+  }
+}

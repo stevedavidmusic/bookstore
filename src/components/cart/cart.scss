@@ -1,0 +1,57 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.Cart__Master {
+    @include flex(column); 
+    color: $white; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    overflow-y: scroll; 
+}
+
+.Cart__Container {
+    @include flex_center(column);
+    width: 70%; 
+    // background-color: black; 
+}
+
+.Cart__ExitIcon {
+    display: flex; 
+    align-items: center; 
+    flex-direction: row-reverse; 
+    fill: $white;  
+    width: 100%; 
+    padding-top: 10px; 
+    padding-right: 100px; 
+    background-color: $black; 
+}
+
+.Cart__Empty {
+    @include flex_center(row); 
+    
+}
+
+.Cart__CartItems {
+    @include flex(column);
+    height: 100%;
+    background-color: $black; 
+}
+
+.Cart__CheckoutContainer {
+    @include flex_center(column);
+    // display: flex; 
+    // justify-content: space-between; 
+    // align-items: center; 
+}
+
+.Cart__Price {
+    padding-top: 5px; 
+}
+
+.Cart__StripeButton {
+    padding-top: 10px; 
+}

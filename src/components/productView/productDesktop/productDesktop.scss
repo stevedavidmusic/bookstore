@@ -1,0 +1,222 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+
+.ProductDesktop__Master {
+  @include flex(column);
+  @include master_colors; 
+  padding-top: 7.5px;
+  width: 100%;
+  height: 100%;
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+}
+
+.ProductDesktop__TopContainer {
+  display: flex;
+  width: 95%;
+  height: 100%; 
+  padding-left: 10px;
+}
+
+.ProductDesktop__ImageContainer {
+  display: flex;
+  padding-left: 20px;
+  padding-bottom: 5px;
+}
+
+.ProductDesktop__Image {
+  width: 30vw;
+  padding-top: 1.325vh;
+}
+
+.ProductDesktop__BookInfo {
+  color: $mist;
+  padding-left: 5px;
+  width: 100%;
+  height: 100%; 
+  line-height: 55px; 
+}
+
+.ProductDesktop__Title {
+  padding-bottom: 5px;
+}
+
+.ProductDesktop__Author {
+  color: $white; 
+  font-style: italic;
+  padding-left: 5px;
+}
+
+.ProductDesktop__AuthorLink, .ProductDesktop__SubjectsLink{
+  :hover {
+    color: $sky-blue; 
+  }
+}
+
+.ProductDesktop__MiscInfo {
+  padding-left: 5px;
+  padding-bottom: 20px; 
+  width: 50%;
+  font-style: italic;
+  line-height: 55px; 
+  h3 {
+    color: $white; 
+  }
+}
+
+.ProductDesktop__AddContainer {
+  @include flex(row);
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 5px;
+  padding-left: 6vw;
+}
+
+.ProductDesktop__CountToggle {
+  @include flex_center(row);
+  padding-bottom: 15px;
+  max-width: 100%;
+}
+
+.ProductDesktop__MinusSign {
+  display: flex; 
+  fill: $mist;
+  width: 3.5vw;
+  height: 3.5vh;
+  padding-right: 2.5vw;
+}
+
+.ProductDesktop__Count {
+  @include flex_center(row);
+  border: 1px solid $pidgeon-grey;
+  width: 7.5vw;
+  height: 6vh;
+}
+
+.ProductDesktop__PlusSign {
+  display: flex;
+  fill: $mist;
+  height: 4.25vh;
+  width: 4.25vw;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+}
+
+.ProductDesktop__AddToCart {
+  @include flex_center(row);
+  width: 100%;
+  height: 6vh;
+  background-color: $sky-blue;
+  border-radius: 50px;
+}
+
+.ProductDesktop__Description {
+  @include flex_center(row);
+  max-width: 90%;
+  color: $mist;
+  line-height: 25px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 25px; 
+}
+
+.ProductDesktop__Recommended {
+  @include hidden; 
+}
+
+.ProductDesktop__RecommendedBooks {
+  @include hidden; 
+}
+
+@media only screen and (min-width: 750px) {
+  .ProductDesktop__Image {
+    width: 275px; 
+    height: 450px; 
+  }  
+}
+
+@media only screen and (min-width: 1000px) {
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .ProductDesktop__Image {
+    width: 275px; 
+    height: 450px; 
+  }  
+
+  .ProductDesktop__Recommended {
+    @include flex_center(column);
+    width: 100%; 
+  }
+  
+  .ProductDesktop__RecommendedBooks {
+    @include flex_center(row); 
+    justify-content: space-between;
+    align-items: center; 
+    flex-wrap: wrap; 
+    width: 90%; 
+    padding-bottom: 30px; 
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .ProductDesktop__Master {
+    h1 {
+      font-size: 45px;
+    }
+
+    h2 {
+      font-size: 35px;
+    }
+
+    h3 {
+      font-size: 27.5px;
+    }
+  }
+
+  .ProductDesktop__AddContainer {
+    padding-left: 4vw;
+  }
+
+  .ProductDesktop__Description {
+    line-height: 30px; 
+    padding-left: 30px; 
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .ProductDesktop__Image {
+    width: 300px; 
+    height: 450px; 
+  }  
+}
+
+@media only screen and (min-width: 1800px) {
+  .ProductDesktop__AddContainer {
+    padding-left: 1.75vw;
+  }
+}
+
+@media only screen and (min-width: 2100px) {
+  .ProductDesktop__Image {
+    width: 325px; 
+    height: 475px; 
+  }  
+
+  .ProductDesktop__AddContainer {
+    padding-left: 0.75vw;
+  }
+
+  .ProductDesktop__Description {
+    max-width: 77.5%; 
+  }
+}

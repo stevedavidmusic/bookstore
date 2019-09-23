@@ -1,0 +1,40 @@
+// @import './variables';
+
+@mixin topic_cards($color, $height){
+    background-color: $color; 
+    width: 100%; 
+    height: $height; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+}
+
+@mixin master_colors {
+    background-color: $black;
+    color: $bright-orange; 
+}
+
+@mixin hidden {
+    display: none;
+    // width: 0px; 
+}
+
+@mixin flex($layout){
+    display: flex; 
+    flex-direction: $layout;
+}
+
+@mixin flex_center($layout){
+    display: flex; 
+    flex-direction: $layout; 
+    justify-content: center; 
+    align-items: center;
+}
+
+@mixin book_row {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+}
