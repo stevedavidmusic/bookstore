@@ -50,6 +50,11 @@ app.put("/api/updateCart", ic.updateCart)
 app.delete("/api/deleteItem/:id", ic.deleteItem)
 app.delete("/api/deleteCart/:id", ic.deleteCart)
 
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
 const PORT = process.env.SERVER_PORT || 4000;
 
 app.listen(PORT, () => {
