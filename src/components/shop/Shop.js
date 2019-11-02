@@ -8,7 +8,8 @@ class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      category: ""
     };
   }
 
@@ -20,9 +21,25 @@ class Shop extends Component {
     });
   };
 
+  changeCategory = e => {
+    this.setState({
+      category: e.target.value
+    });
+    console.log(this.state.category);
+  };
+
   render() {
-    const { books } = this.state;
-    const showBooks = books.map(book => {
+    const { books, category } = this.state;
+    
+    const filteredBooks = books.filter(book => {
+      if (category !== "") {
+        return book.subject.includes(category);
+      } else {
+        return books;
+      }
+    });
+
+    const showBooks = filteredBooks.map(book => {
       return (
         <Product
           className="Shop__Book"
@@ -35,7 +52,7 @@ class Shop extends Component {
         />
       );
     });
-    
+
     return (
       <div className="Shop__Master">
         <div className="Shop__DropdownContainer">
@@ -43,7 +60,7 @@ class Shop extends Component {
             <h1>Search by Category</h1>
           </div>
           <div className="Shop__DropdownMenu">
-            <CategoryBar />
+            <CategoryBar changeCategory={this.changeCategory} />
           </div>
         </div>
         <div className="Shop__BooksContainer">{showBooks}</div>

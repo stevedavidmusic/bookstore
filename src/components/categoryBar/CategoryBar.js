@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "./categoryBar.scss";
 
-class CategoryBar extends Component {
-  changeCategory = e => {
-    const { host } = window.location;
-    const { value } = e.target;
-    window.location = `http://${host}/#/category/${value}`;
-  };
-
-  render() {
+const CategoryBar = props =>  {
     return (
-      <div className="CategoryBar__Master" onChange={this.changeCategory}>
+      <div className="CategoryBar__Master" onChange={props.changeCategory}>
         <select className="CategoryBar__Dropdown">
+          <option value="">
+            All
+          </option>
           <option value="Biographies">
             Biographies
           </option>
@@ -31,7 +27,6 @@ class CategoryBar extends Component {
         </select>
       </div>
     );
-  }
 }
 
 export default CategoryBar;
