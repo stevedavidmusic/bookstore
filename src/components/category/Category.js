@@ -8,33 +8,37 @@ class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      subject: ""
     };
   }
 
-  componentDidMount = () => {
-    this.getCategory();
+  componentDidMount = async () => {
+    const books = await axios.get("/api/getBooks");
+    await this.setState({
+      books: books.data,
+      subject: this.props.match.params
+    });
   };
 
-  componentDidUpdate = prevProps => {
-    if(prevProps.match.params !== this.props.match.params){
-      this.getCategory();
-    }
-  };
-
-  getCategory = () => {
-    const { category } = this.props.match.params;
-    axios.get(`/api/categories/${category}`).then(results => {
-      this.setState({
-        books: results.data
-      });
+  changeCategory = e => {
+    this.setState({
+      subject: { category: e.target.value }
     });
   };
 
   render() {
-    const { books } = this.state;
-    const { category } = this.props.match.params;
-    const showBooks = books.map(book => {
+    const { books, subject } = this.state;
+
+    const filteredBooks = books.filter(book => {
+      if (subject !== "") {
+        return book.subject.includes(subject.category);
+      } else {
+        return books;
+      }
+    });
+
+    const showBooks = filteredBooks.map(book => {
       return (
         <Product
           className="Shop__Book"
@@ -42,16 +46,17 @@ class Category extends Component {
           title={book.title}
           author={book.author}
           image={book.image}
-          id={book.book_id}
+          id={book.id}
           price={book.price}
         />
       );
     });
+
     return (
       <div className="Category__Master">
         <div className="Category__BooksByCategory">
           <h1>
-            Books by Subject: {category} ({books.length})
+            Books by Subject: {subject.category} ({showBooks.length})
           </h1>
         </div>
         <div className="Shop__DropdownContainer">
@@ -59,7 +64,7 @@ class Category extends Component {
             <h1>Search by Category</h1>
           </div>
           <div className="Shop__DropdownMenu">
-            <CategoryBar />
+            <CategoryBar changeCategory={this.changeCategory} />
           </div>
         </div>
         <div className="Shop__BooksContainer">{showBooks}</div>

@@ -15,15 +15,13 @@ class Cart extends Component {
     };
   }
 
-  deleteItem = (cart_item_id, user_id) => {
-    axios.delete(`/api/deleteItem/${cart_item_id}`).then(() => {
-      axios.get(`/api/getCart/${user_id}`).then(res => {
-        this.props.getCart(res.data);
-      });
-    });
+  deleteItem = async (cart_item_id, user_id) => {
+    await axios.delete(`/api/deleteItem/${cart_item_id}`);
+    const cart = await axios.get(`/api/getCart/${user_id}`);
+    await this.props.getCart(cart.data);
   };
 
-  editCount = (quantity, cart_item_id, user_id, mode) => {
+  editCount = async (quantity, cart_item_id, user_id, mode) => {
     if (mode === "plus") {
       quantity = quantity + 1;
     } else {
@@ -37,9 +35,8 @@ class Cart extends Component {
     if (quantity === 0) {
       this.deleteItem(cart_item_id, user_id);
     } else {
-      axios.put(`/api/updateCart`, items).then(res => {
-        this.props.getCart(res.data);
-      });
+      const cart = await axios.put(`/api/updateCart`, items);
+      await this.props.getCart(cart.data);
     }
   };
 
@@ -89,7 +86,9 @@ class Cart extends Component {
             <Exit onClick={() => this.props.toggleCart()} />
           </div>
           {cart.length === 0 ? (
-            <div className="Cart__Empty"><h1>Cart is Empty</h1></div>
+            <div className="Cart__Empty">
+              <h1>Cart is Empty</h1>
+            </div>
           ) : (
             <div className="Cart__CartItems">
               <CartItems

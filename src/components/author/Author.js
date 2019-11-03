@@ -11,13 +11,13 @@ class Author extends Component {
     };
   }
 
-  componentDidMount = () => {
-    axios.get(`/api/author/${this.props.match.params.author}`).then(results => {
-      this.setState({
-        books: results.data
-      });
-    });
+  componentDidMount = async () => {
+    const books = await axios.get(`/api/author/${this.props.match.params.author}`)
+    await this.setState({
+      books: books.data
+    })
   };
+
 
   render() {
     const { books } = this.state;

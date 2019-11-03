@@ -1,132 +1,132 @@
 module.exports = {
-  getBooks: (req, res ) => {
-    req.app
-      .get("db")
-      .getBooks()
-      .then(books => {
-        res.status(200).json(books);
-      })
-      .catch(err => console.log("getbooks ERROR", err));
+  getBooks: async (req, res) => {
+    try {
+      const books = await req.app.get("db").getBooks();
+      await res.status(200).json(books);
+    } catch (err) {
+      console.log("getbooks ERROR", err);
+    }
   },
 
-  getBookInfo: (req, res ) => {
+  getBookInfo: async (req, res) => {
     const { id } = req.params;
-    req.app
-      .get("db")
-      .getBookInfo(id)
-      .then(book => {
-        res.status(200).json(book);
-      })
-      .catch(err => console.log("getBookInfo", err));
+    try {
+      const info = await req.app.get("db").getBookInfo(id);
+      await res.status(200).json(info);
+    } catch (err) {
+      console.log("getBookInfo", err);
+    }
   },
 
-  getBooksByAuthor: (req, res ) => {
+  getBooksByAuthor: async (req, res) => {
     const { author } = req.params;
-    req.app
-      .get("db")
-      .getBooksByAuthor(author)
-      .then(books => {
-        res.status(200).json(books);
-      })
-      .catch(err => console.log("getBooksByAuthor", err));
+    try {
+      const books = await req.app.get("db").getBooksByAuthor(author);
+      await res.status(200).json(books);
+    } catch (err) {
+      console.log("getBooksByAuthor", err);
+    }
   },
 
-  getBooksByCategory: (req, res ) => {
+  getBooksByCategory: async (req, res) => {
     const { category } = req.params;
-    req.app
-      .get("db")
-      .getBooksByCategory(category)
-      .then(books => {
-        res.status(200).json(books);
-      })
-      .catch(err => console.log("getBooksByCategory", err));
+    try {
+      const books = await req.app.get("db").getBooksByCategory(category);
+      await res.status(200).json(books);
+    } catch (err) {
+      console.log("getBooksByCategory", err);
+    }
   },
 
-  getCart: (req, res ) => {
+  getCart: async (req, res) => {
     const { id } = req.params;
-    req.app
-      .get("db")
-      .getCart(id)
-      .then(cart => {
-        res.status(200).json(cart);
-      })
-      .catch(err => console.log("getCart", err));
+    try {
+      const cart = await req.app.get("db").getCart(id);
+      await res.status(200).json(cart);
+    } catch (err) {
+      console.log("getCart", err);
+    }
   },
 
-  getRecommendations: (req, res ) => {
+  getRecommendations: async (req, res) => {
     let { subject, id } = req.params;
-    req.app
-      .get("db")
-      .getRecommendations(subject, id)
-      .then(books => {
-        res.status(200).json(books);
-      })
-      .catch(err => console.log("getRecommendations", err));
+    try {
+      const books = await req.app.get("db").getRecommendations(subject, id);
+      await res.status(200).json(books);
+    } catch (err) {
+      console.log("getRecommendations", err);
+    }
   },
 
-  addToCart: (req, res ) => {
+  addToCart: async (req, res) => {
     const { id, count, user_id, price, image, title } = req.body;
-    req.app
-      .get("db")
-      .addCartItem([id, count, user_id, price, image, title])
-      .then(item => {
-        res.status(200).json(item);
-      })
-      .catch(err => console.log("addToCart", err));
+    try {
+      const item = await req.app
+        .get("db")
+        .addCartItem([id, count, user_id, price, image, title]);
+      await res.status(200).json(item);
+    } catch (err) {
+      console.log("addToCart", err);
+    }
   },
 
-  updateCart: (req, res ) => {
+  updateCart: async (req, res) => {
     const { quantity, cart_item_id, user_id } = req.body;
-    req.app
-      .get("db")
-      .updateItemCount(quantity, cart_item_id, user_id)
-      .then(item => {
-        res.status(200).json(item);
-      })
-      .catch(err => console.log("updateCart", err));
+    try {
+      const item = await req.app
+        .get("db")
+        .updateItemCount(quantity, cart_item_id, user_id);
+      await res.status(200).json(item);
+    } catch (err) {
+      console.log("updateCart", err);
+    }
   },
 
-  stripeCheckout: (req, res ) => {
+  stripeCheckout: (req, res) => {
     const stripeToken = req.body;
-    const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
-    
-    stripe.charges.create({
-        amount: 1000,
-        currency: 'usd',
-        description: 'Example Charge',
-        source: stripeToken.body
-      }, function(err, charge) {
-          console.log('charge', charge)
-          if(err){
-            res.send({
-                success: false,
-                message: 'Error'
-            })
-          } else {
-            res.send({
-            success: true,
-            message: 'Success'
-         })
-          }
-      });  
-  }, 
+    const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-  deleteItem: (req, res ) => {
-    const { id } = req.params;
-    req.app
-      .get("db")
-      .deleteCartItem(id)
-      .then(items => {
-        res.status(200).json(items);
-      })
-      .catch(err => console.log("deleteItem", err));
+    stripe.charges.create(
+      {
+        amount: 1000,
+        currency: "usd",
+        description: "Example Charge",
+        source: stripeToken.body
+      },
+      function(err, charge) {
+        console.log("charge", charge);
+        if (err) {
+          res.send({
+            success: false,
+            message: "Error"
+          });
+        } else {
+          res.send({
+            success: true,
+            message: "Success"
+          });
+        }
+      }
+    );
   },
 
-  deleteCart: (req, res ) => {
-    console.log("DELETE CART START")
-    const { id } = req.params
-    req.app.get("db").deleteCart(id).then((cart) => {
-      res.status(200).json(cart)
-    })
+  deleteItem: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const items = await req.app.get("db").deleteCartItem(id);
+      await res.status(200).json(items);
+    } catch (err) {
+      console.log("deleteItem", err);
+    }
+  },
+
+  deleteCart: async (req, res) => {
+    const { id } = req.params;
+      try {
+      const cart = await req.app.get("db").deleteCart(id)
+      await res.status(200).json(cart);
+      } catch (err) {
+        console.log("deleteCart ERROR", err)
+      }
   }
 };

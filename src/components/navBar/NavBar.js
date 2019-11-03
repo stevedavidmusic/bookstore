@@ -16,19 +16,13 @@ class NavBar extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  componentDidMount = () => {
-    axios
-      .get("/api/userData")
-      .then(res => {
-        this.props.getUser(res.data);
-      })
-      .then(() => {
-        if (this.props.user !== "") {
-          axios.get(`/api/getCart/${this.props.user.user_id}`).then(res => {
-            this.props.getCart(res.data);
-          });
-        }
-      });
+  componentDidMount = async () => {
+    const user = await axios.get("/api/userData");
+    await this.props.getUser(user.data);
+    if (this.props.user !== "") {
+      const cart = await axios.get(`/api/getCart/${this.props.user.user_id}`);
+      await this.props.getCart(cart.data);
+    }
   };
 
   componentDidUpdate = prevProps => {
@@ -38,24 +32,23 @@ class NavBar extends Component {
   };
 
   toggleLink = () => {
-    if(this.state.toggleLink === false) {
+    if (this.state.toggleLink === false) {
       this.setState({
         toggleLink: true
-      })
+      });
     } else {
       this.setState({
         toggleLink: false
-      })
-    }
-  }
-
-  getUserCart = () => {
-    if (this.props.user !== "") {
-      axios.get(`/api/getCart/${this.props.user.user_id}`).then(res => {
-        if (res.data.length !== 0) {
-          this.props.getCart(res.data);
-        }
       });
+    }
+  };
+
+  getUserCart = async () => {
+    if (this.props.user !== "") {
+      const cart = await axios.get(`/api/getCart/${this.props.user.user_id}`);
+      if (cart.data.length !== 0) {
+        await this.props.getCart(cart.data);
+      }
     }
   };
 
@@ -66,15 +59,10 @@ class NavBar extends Component {
     window.location = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${process.env.REACT_APP_AUTH0_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`;
   };
 
-  logout = () => {
-    axios
-      .get("/api/logout")
-      .then(res => {
-        this.props.getUser(res.data);
-      })
-      .then(() => {
-        this.props.clearCart();
-      });
+  logout = async () => {
+    const logout = await axios.get("/api/logout");
+    await this.props.getUser(logout.data);
+    await this.props.clearCart();
   };
 
   render() {
@@ -86,7 +74,10 @@ class NavBar extends Component {
 
     return (
       <div className="NavBar__Master">
-        <div className="NavBar__HomeAndShopMobile" onClick={() => this.forceUpdate()}>
+        <div
+          className="NavBar__HomeAndShopMobile"
+          onClick={() => this.forceUpdate()}
+        >
           {window.location.hash === "#/shop" ? (
             <Link to="/">
               <h1>Home</h1>

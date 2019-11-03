@@ -13,19 +13,17 @@ class Shop extends Component {
     };
   }
 
-  componentDidMount = () => {
-    axios.get("/api/getBooks").then(response => {
-      this.setState({
-        books: response.data
-      });
-    });
+  componentDidMount = async () => {
+    const books = await axios.get("/api/getBooks")
+    await this.setState({
+      books: books.data
+    })
   };
 
   changeCategory = e => {
     this.setState({
       category: e.target.value
     });
-    console.log(this.state.category);
   };
 
   render() {

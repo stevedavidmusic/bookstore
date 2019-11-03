@@ -46,24 +46,19 @@ class ProductView extends Component {
     }
   };
 
-  getBook = () => {
+  getBook = async () => {
     const { id } = this.props.match.params;
-    axios
-      .get(`/api/book/${id}`)
-      .then(response => {
-        this.setState({
-          book: response.data
-        });
-      })
-      .then(() => {
-        const subject = this.state.book[0].subject[0];
-        axios.get(`/api/recommendations/${id}/${subject}`).then(response => {
-          this.setState({
-            recommendations: response.data
-          });
-        });
-      });
+    const book = await axios.get(`/api/book/${id}`)
+    await this.setState({
+      book: book.data
+    })
+    const subject = this.state.book[0].subject[0];
+    const recommendations = await axios.get(`/api/recommendations/${id}/${subject}`)
+    await this.setState({
+      recommendations: recommendations.data
+    })
   };
+
 
   addCount = () => {
     if (this.state.count < 99) {
@@ -81,27 +76,25 @@ class ProductView extends Component {
     }
   };
 
-  addItem = items => {
-    axios.post("/api/addToCart/", items).then(() => {
-      this.getCart();
-    });
+  addItem = async items => {
+    await axios.post("/api/addToCart/", items)
+    await this.getCart()
   };
 
-  updateCart = update => {
-    axios.put("/api/updateCart/", update).then(() => {
-      this.getCart();
-    });
+  updateCart = async update => {
+   await axios.put("/api/updateCart/", update)
+   await this.getCart()
   };
 
-  getCart = () => {
-    if (this.props.user !== "") {
-      axios.get(`/api/getCart/${this.props.user.user_id}`).then(res => {
-        if (res.data.length !== 0) {
-          this.props.getCart(res.data);
-        }
-      });
+  getCart = async () => {
+    if (this.props.user !== ""){
+      const user = await axios.get(`/api/getCart/${this.props.user.user_id}`)
+      if(user.data.length !== 0){
+        this.props.getCart(user.data)
+      }
     }
   };
+
 
   addToCart = () => {
     const { id, price, image, title } = this.state.book[0];
